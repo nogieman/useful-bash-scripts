@@ -1,8 +1,6 @@
 
 #!/usr/bin/env bash
 set -e
-
-# Check architecture
 arch=$(uname -m)
 if [ "$arch" != "x86_64" ]; then
     echo "This script currently only supports x86_64 Linux."
