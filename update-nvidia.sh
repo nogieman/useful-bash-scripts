@@ -1,21 +1,15 @@
 
 #!/bin/bash
 set -e
+KVER=$(ls /lib/modules | sort -V | tail -n 1)  # Find latest kernel version available
+echo "-> Latest kernel detected: $KVER"
 
-# Find latest kernel version available
-KVER=$(ls /lib/modules | sort -V | tail -n 1)
-
-echo "==> Latest kernel detected: $KVER"
-
-# Install image + headers
 sudo apt update
-sudo apt install -y linux-image-$KVER linux-headers-$KVER
+sudo apt install -y linux-image-$KVER linux-headers-$KVER  # Install image + headers
 
-# Build NVIDIA DKMS module
-sudo dkms install nvidia-current/550.163.01 -k $KVER || true
+sudo dkms install nvidia-current/550.163.01 -k $KVER || true  # Build NVIDIA DKMS module
 
-# Update initramfs + grub
-sudo update-initramfs -u -k $KVER
+sudo update-initramfs -u -k $KVER  # Update initramfs + grub
 sudo update-grub
 
-echo "==> Done! Now reboot into $KVER"
+echo "-> Done! Now reboot into $KVER"
