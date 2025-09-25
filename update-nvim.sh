@@ -7,7 +7,7 @@ if [ "$arch" != "x86_64" ]; then
     exit 1
 fi
 
-echo "Removing old Neovim AppImage (if any)..."
+echo "Removing old Neovim AppImage..."
 sudo rm -f /usr/local/bin/nvim /usr/local/bin/nvim.appimage
 
 echo "Downloading latest Neovim AppImage..."
